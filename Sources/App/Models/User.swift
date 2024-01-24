@@ -5,26 +5,41 @@
 //  Created by Yujin Kim on 2024-01-22.
 //
 
+import Fluent
 import Vapor
-import FluentMySQLDriver
 
-final class User: Codable {
-    var id: UUID?
-    var name: String
-    var email: String
-    var accessToken: String
+final class User: Model {
+    static let schema: String = Schema.users.rawValue
     
-    init(name: String, email: String, accessToken: String) {
+    @ID(key: .id)
+    var id: UUID?
+    
+    @OptionalField(key: FieldKeys.name)
+    var name: String?
+    
+    @Field(key: FieldKeys.email)
+    var email: String
+    
+    @Field(key: FieldKeys.username)
+    var username: String
+    
+    @Field(key: FieldKeys.role)
+    var role: String
+    
+    @Field(key: FieldKeys.createdAt)
+    var createdAt: String
+    
+    init() {}
+    
+    init(name: String, email: String) {
         self.name = name
         self.email = email
-        self.accessToken = accessToken
     }
     
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decodeIfPresent(UUID.self, forKey: .id)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.email = try container.decode(String.self, forKey: .email)
-        self.accessToken = try container.decode(String.self, forKey: .accessToken)
+    init(name: String?, username: String) {
+        self.name = name
+        self.username = username
     }
 }
+
+extension User: Content {}
