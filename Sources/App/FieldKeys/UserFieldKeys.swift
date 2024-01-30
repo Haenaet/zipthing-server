@@ -14,7 +14,9 @@ extension User {
         static var name: FieldKey { "name" }
         static var username: FieldKey { "username" }
         static var email: FieldKey { "email" }
+        static var phoneNumber: FieldKey { "phoneNumber" }
+        static var birthday: FieldKey { "birthday" }
         static var role: FieldKey { "role" }
-        static var createdAt: FieldKey { "createdAt" }
+        static var accountType: FieldKey { "accountType" }
     }
 }

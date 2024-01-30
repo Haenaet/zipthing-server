@@ -17,17 +17,23 @@ final class User: Model {
     @OptionalField(key: FieldKeys.name)
     var name: String?
     
+    @Field(key: FieldKeys.username)
+    var username: String
+    
     @Field(key: FieldKeys.email)
     var email: String
     
-    @Field(key: FieldKeys.username)
-    var username: String
+    @OptionalField(key: FieldKeys.phoneNumber)
+    var phoneNumber: String?
+    
+    @OptionalField(key: FieldKeys.birthday)
+    var birthday: String?
     
     @Field(key: FieldKeys.role)
     var role: String
     
-    @Field(key: FieldKeys.createdAt)
-    var createdAt: String
+    @Field(key: FieldKeys.accountType)
+    var accountType: String
     
     init() {}
     
