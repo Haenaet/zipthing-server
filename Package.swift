@@ -11,6 +11,7 @@ let package = Package(
         .package(url: "https://github.com/vapor/fluent.git", from: "4.8.0"),
         .package(url: "https://github.com/vapor/fluent-mysql-driver.git", from: "4.0.0"),
         .package(url: "https://github.com/vapor-community/Imperial.git", from: "1.0.0"),
+        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0")
     ],
     targets: [
         .executableTarget(
@@ -20,6 +21,7 @@ let package = Package(
                 .product(name: "FluentMySQLDriver", package: "fluent-mysql-driver"),
                 .product(name: "Vapor", package: "vapor"),
                 .product(name: "ImperialGitHub", package: "Imperial"),
+                .product(name: "JWT", package: "jwt"),
             ]
         ),
         .testTarget(name: "AppTests", dependencies: [
@@ -30,6 +32,8 @@ let package = Package(
             .product(name: "Vapor", package: "vapor"),
             .product(name: "Fluent", package: "Fluent"),
             .product(name: "FluentMySQLDriver", package: "fluent-mysql-driver"),
+            .product(name: "ImperialGitHub", package: "Imperial"),
+            .product(name: "JWT", package: "jwt"),
         ])
     ]
 )
