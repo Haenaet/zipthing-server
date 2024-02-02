@@ -25,6 +25,8 @@ let package = Package(
             dependencies: [
                 .product(name: "Fluent", package: "fluent"),
                 .product(name: "Vapor", package: "vapor"),
+                .product(name: "JWT", package: "jwt"),
+                .product(name: "ImperialGoogle", package: "Imerial"),
                 "Data",
             ]
         ),
@@ -35,22 +37,12 @@ let package = Package(
                 .product(name: "Fluent", package: "fluent"),
                 .product(name: "Vapor", package: "vapor"),
                 .product(name: "FluentMySQLDriver", package: "fluent-mysql-driver"),
-                "Domain",
-            ]
-        ),
-        /// Domain Module
-        .target(
-            name: "Domain",
-            dependencies: [
-                .product(name: "Fluent", package: "fluent"),
-                .product(name: "Vapor", package: "vapor"),
             ]
         ),
         /// Test Module
         .testTarget(name: "AppTests", dependencies: [
             .target(name: "App"),
             .product(name: "XCTVapor", package: "vapor"),
-
             // Workaround for https://github.com/apple/swift-package-manager/issues/6940
             .product(name: "Fluent", package: "Fluent"),
             .product(name: "Vapor", package: "vapor"),
