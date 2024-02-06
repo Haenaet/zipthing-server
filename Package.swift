@@ -14,19 +14,14 @@ let package = Package(
         .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0")
     ],
     targets: [
-        /// Run Module
-        .executableTarget(
-            name: "Run",
-            dependencies: ["App"]
-        ),
         /// App Module
-        .target(
+        .executableTarget(
             name: "App",
             dependencies: [
                 .product(name: "Fluent", package: "fluent"),
                 .product(name: "Vapor", package: "vapor"),
                 .product(name: "JWT", package: "jwt"),
-                .product(name: "ImperialGoogle", package: "Imerial"),
+                .product(name: "ImperialGoogle", package: "Imperial"),
                 "Data",
             ]
         ),

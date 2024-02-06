@@ -7,5 +7,8 @@
 
 import Fluent
 import Vapor
+import Data
 
-extension Migrations {}
+func migrate(_ app: Application) throws {
+    try app.migrations.add(UserToken.Migration())
+}
