@@ -8,35 +8,14 @@
 import Fluent
 import Vapor
 
-final class User: Model {
-    static let schema: String = Schema.users.rawValue
+final public class User: Model {
+    public static let schema: String = Schema.users.rawValue
     
     @ID(key: .id)
-    var id: UUID?
+    public var id: UUID?
     
     @OptionalField(key: FieldKeys.name)
     var name: String?
-    
-    @OptionalField(key: FieldKeys.birthday)
-    var birthday: String?
-    
-    @OptionalField(key: FieldKeys.phoneNumber)
-    var phoneNumber: String?
-    
-    @OptionalField(key: FieldKeys.MBTI)
-    var MBTI: String?
-    
-    @OptionalField(key: FieldKeys.shoeSize)
-    var shoeSize: Int?
-    
-    @OptionalField(key: FieldKeys.hobbies)
-    var hobbies: String?
-    
-    @OptionalField(key: FieldKeys.favoriteBrand)
-    var favoriteBrand: String?
-    
-    @OptionalField(key: FieldKeys.favoriteBook)
-    var favoriteBook: String?
     
     @Field(key: FieldKeys.email)
     var email: String
@@ -50,18 +29,11 @@ final class User: Model {
     @Field(key: FieldKeys.accountType)
     var accountType: String
     
-    init() {}
+    public init() {}
     
-    init(
+    public init(
         id: UUID? = nil,
         name: String? = nil,
-        birthday: String? = nil,
-        phoneNumber: String? = nil,
-        MBTI: String? = nil,
-        shoeSize: Int? = nil,
-        hobbies: String? = nil,
-        favoriteBrand: String? = nil,
-        favoriteBook: String? = nil,
         email: String,
         username: String,
         role: String,
@@ -69,16 +41,11 @@ final class User: Model {
     ) {
         self.id = id
         self.name = name
-        self.birthday = birthday
-        self.phoneNumber = phoneNumber
-        self.MBTI = MBTI
-        self.shoeSize = shoeSize
-        self.hobbies = hobbies
-        self.favoriteBrand = favoriteBrand
-        self.favoriteBook = favoriteBook
         self.email = email
         self.username = username
         self.role = role
         self.accountType = accountType
     }
 }
+
+extension User: Authenticatable {}

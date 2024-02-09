@@ -12,7 +12,7 @@ final public class UserInformation: Model {
     public static let schema: String = "user_information"
     
     @ID(key: .id)
-    var id: UUID?
+    public var id: UUID?
     
     @OptionalField(key: FieldKeys.birthday)
     var birthday: String?
@@ -34,7 +34,6 @@ final public class UserInformation: Model {
     
     @OptionalField(key: FieldKeys.favoriteBook)
     var favoriteBook: String?
-    
     
     public init() {}
 }

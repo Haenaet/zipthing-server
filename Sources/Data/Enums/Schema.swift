@@ -7,6 +7,8 @@
 
 import Vapor
 
-public enum Schema: String {
+enum Schema: String {
     case users
+    case userTokens
+    case userInformations
 }
