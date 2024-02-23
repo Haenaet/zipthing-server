@@ -1,28 +1,23 @@
-import NIOSSL
-import Fluent
-import FluentMySQLDriver
 import Vapor
+import Data
 
-// configures your application
+// configures vapor application
 public func configure(_ app: Application) async throws {
     // uncomment to serve files from /Public folder
     // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
-   
-    // set database
+    //
+    // 토큰 키 설정
+    try setJWTSigners(app)
+    
+    // 데이터베이스 설정
     try setFluentMySQL(app)
 
-    // register routes
+    // 라우트 등록
     try routes(app)
 }
 
-private func setFluentMySQL(_ app: Application) throws {
-    app.databases.use(
-        DatabaseConfigurationFactory.mysql(
-            hostname: Environment.get("DATABASE_HOST") ?? "localhost",
-            port: Environment.get("DATABASE_PORT").flatMap(Int.init(_:)) ?? MySQLConfiguration.ianaPortNumber,
-            username: Environment.get("DATABASE_USERNAME") ?? "vapor_username",
-            password: Environment.get("DATABASE_PASSWORD") ?? "vapor_password",
-            database: Environment.get("DATABASE_NAME") ?? "vapor_database"
-        ), as: .mysql
-    )
+private func setJWTSigners(_ app: Application) throws {
+    guard let secretKey = Environment.get("JWT_SECRET_KEY") else { return }
+    
+    app.jwt.signers.use(.hs256(key: secretKey))
 }
