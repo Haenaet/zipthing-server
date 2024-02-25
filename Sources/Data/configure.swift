@@ -19,4 +19,6 @@ public func setFluentMySQL(_ app: Application) throws {
             database: Environment.get("DATABASE_NAME") ?? "vapor_database"
         ), as: .mysql
     )
+    
+    app.migrations.add(UserToken.Migration())
 }
